@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevToys.FluentIconFinder {
+namespace DevToys.Extensions.FluentIconFinder {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DevToys.FluentIconFinder {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.FluentIconFinder.FluentIconFinder", typeof(FluentIconFinder).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevToys.Extensions.FluentIconFinder.FluentIconFinder", typeof(FluentIconFinder).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

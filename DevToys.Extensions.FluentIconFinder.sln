@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.FluentIconFinder", "DevToys.FluentIconFinder\DevToys.FluentIconFinder.csproj", "{7C5A6E69-374D-4A4F-ACF1-A45132DC26B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevToys.Extensions.FluentIconFinder", "DevToys.Extensions.FluentIconFinder\DevToys.Extensions.FluentIconFinder.csproj", "{1D498946-C049-4444-8447-D7FD6DE4415A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7C5A6E69-374D-4A4F-ACF1-A45132DC26B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C5A6E69-374D-4A4F-ACF1-A45132DC26B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C5A6E69-374D-4A4F-ACF1-A45132DC26B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C5A6E69-374D-4A4F-ACF1-A45132DC26B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D498946-C049-4444-8447-D7FD6DE4415A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D498946-C049-4444-8447-D7FD6DE4415A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D498946-C049-4444-8447-D7FD6DE4415A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D498946-C049-4444-8447-D7FD6DE4415A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

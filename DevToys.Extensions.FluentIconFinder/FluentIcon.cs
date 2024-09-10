@@ -1,4 +1,4 @@
-﻿namespace DevToys.FluentIconFinder;
+﻿namespace DevToys.Extensions.FluentIconFinder;
 
 public record FluentIcon(string Name, string IosName, string AndroidName, int Code, int Size);
 

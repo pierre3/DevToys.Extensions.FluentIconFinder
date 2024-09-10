@@ -2,7 +2,7 @@
 using System.ComponentModel.Composition;
 using static DevToys.Api.GUI;
 
-namespace DevToys.FluentIconFinder;
+namespace DevToys.Extensions.FluentIconFinder;
 
 [Export(typeof(IGuiTool))]
 [Name(nameof(FluentIconFinder))]
@@ -11,7 +11,7 @@ namespace DevToys.FluentIconFinder;
     IconGlyph = '\uea81',
     GroupName = "Graphic",
     ResourceManagerAssemblyIdentifier = nameof(FluentIconFinderResourceAssemblyIdentifier),
-    ResourceManagerBaseName = "DevToys.FluentIconFinder.FluentIconFinder",
+    ResourceManagerBaseName = "DevToys.Extensions.FluentIconFinder.FluentIconFinder",
     ShortDisplayTitleResourceName = nameof(FluentIconFinder.ShortDisplayTitle),
     LongDisplayTitleResourceName = nameof(FluentIconFinder.LongDisplayTitle),
     DescriptionResourceName = nameof(FluentIconFinder.Description),

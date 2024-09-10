@@ -1,7 +1,7 @@
 ﻿using DevToys.Api;
 using System.ComponentModel.Composition;
 
-namespace DevToys.FluentIconFinder;
+namespace DevToys.Extensions.FluentIconFinder;
 
 [Export(typeof(IResourceAssemblyIdentifier))]
 [Name(nameof(FluentIconFinderResourceAssemblyIdentifier))]

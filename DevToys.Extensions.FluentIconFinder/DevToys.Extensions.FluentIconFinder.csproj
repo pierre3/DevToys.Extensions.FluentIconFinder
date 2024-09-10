@@ -4,6 +4,19 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<IsPackable>true</IsPackable>
+	<Version>1.0.0</Version>
+	<Title>DevToys.Extensions.FluentIconFinder</Title>
+	  <Description>Search for Fluent System Icons to obtain character codes and icon name.</Description>
+	  <PackageProjectUrl>https://github.com/pierre3/DevToys.Extensions.FluentIconFinder</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/pierre3/DevToys.Extensions.FluentIconFinder</RepositoryUrl>
+	  <Authors>pierre3</Authors>
+	  <PackageTags>devtoys-app</PackageTags>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <Copyright>© pierre3</Copyright>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <IncludeSymbols>False</IncludeSymbols>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
