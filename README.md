@@ -1,1 +1,1 @@
-# DevToys.FluentIconFinder
+# DevToys.Extensions.FluentIconFinder
