@@ -4,6 +4,11 @@ Search for Fluent System Icons to obtain character codes and icon name.
 
 ![fluent-icon-finder](https://raw.githubusercontent.com/pierre3/DevToys.Extensions.FluentIconFinder/master/img/fluent-icon-finder.png)
 
+## Installation
+
+1. Download the `DevToys.Extensions.FluentIconFinder` NuGet package from [NuGet.org](https://www.nuget.org/packages/DevToys.Extensions.FluentIconFinder).
+1. In DevToys, open `Manager Extensions`, click on `Install` and select the downloaded NuGet package.
+
 ## How to Use
 1. Enter a search term in the "Find icons" text box.
 2. A list of icons containing the entered term in their names will be displayed.
