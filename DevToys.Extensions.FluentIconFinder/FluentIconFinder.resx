@@ -124,13 +124,13 @@
     <value>Name for Android</value>
   </data>
   <data name="CodeTitle" xml:space="preserve">
-    <value>Code</value>
+    <value>Glyph Code</value>
   </data>
   <data name="ColmunNameIcon" xml:space="preserve">
     <value>Icon</value>
   </data>
   <data name="ColumnNameCode" xml:space="preserve">
-    <value>Code</value>
+    <value>Glyph Code</value>
   </data>
   <data name="ColumnNameName" xml:space="preserve">
     <value>Name</value>
@@ -143,6 +143,9 @@
   </data>
   <data name="IconListTitle" xml:space="preserve">
     <value>List of found icons: Double-click to select the row.</value>
+  </data>
+  <data name="IconType" xml:space="preserve">
+    <value>Icon Type</value>
   </data>
   <data name="IosNameTitle" xml:space="preserve">
     <value> Name for iOS</value>

@@ -1,5 +1,6 @@
 ﻿using DevToys.Api;
 using System.ComponentModel.Composition;
+using System.Reflection;
 
 namespace DevToys.Extensions.FluentIconFinder;
 
@@ -9,6 +10,11 @@ internal sealed class FluentIconFinderResourceAssemblyIdentifier : IResourceAsse
 {
     public ValueTask<FontDefinition[]> GetFontDefinitionsAsync()
     {
-        return ValueTask.FromResult<FontDefinition[]>([]);
+        var assembly = Assembly.GetExecutingAssembly();
+        string resourceName = "DevToys.Extensions.FluentIconFinder.Assets.FluentSystemIcons-Filled.ttf";
+
+        Stream stream = assembly.GetManifestResourceStream(resourceName)!;
+
+        return new([new FontDefinition(FluentIcons.FilledIconFontName, stream)]);
     }
 }

@@ -12,10 +12,11 @@ Search for Fluent System Icons to obtain character codes and icon name.
 1. In DevToys, open `Manager Extensions`, click on `Install` and select the downloaded NuGet package.
 
 ## How to Use
-1. Enter a search term in the "Find icons" text box.
-2. A list of icons containing the entered term in their names will be displayed.
-3. Double-click on the row of the icon you want to retrieve from the list.
-4. The character code and icon name of the selected icon will be entered into the text box. Copy and use this information as needed.
+1. Select the icon type from the 'Icon Type' dropdown menu, choosing either 'Regular' or 'Filled'.
+2. Enter a search term in the "Find icons" text box.
+3. A list of icons containing the entered term in their names will be displayed.
+4. Double-click on the row of the icon you want to retrieve from the list.
+5. The character code and icon name of the selected icon will be entered into the text box. Copy and use this information as needed.
 
 ## Known Issues
 - When selecting from the list with a single click, the content of the previously selected row, not the highlighted row, is displayed in the text box.

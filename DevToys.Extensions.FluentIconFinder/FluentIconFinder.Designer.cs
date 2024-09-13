@@ -79,7 +79,7 @@ namespace DevToys.Extensions.FluentIconFinder {
         }
         
         /// <summary>
-        ///   Code に類似しているローカライズされた文字列を検索します。
+        ///   Glyph Code に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CodeTitle {
             get {
@@ -97,7 +97,7 @@ namespace DevToys.Extensions.FluentIconFinder {
         }
         
         /// <summary>
-        ///   Code に類似しているローカライズされた文字列を検索します。
+        ///   Glyph Code に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ColumnNameCode {
             get {
@@ -138,6 +138,15 @@ namespace DevToys.Extensions.FluentIconFinder {
         internal static string IconListTitle {
             get {
                 return ResourceManager.GetString("IconListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Icon Type に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string IconType {
+            get {
+                return ResourceManager.GetString("IconType", resourceCulture);
             }
         }
         
