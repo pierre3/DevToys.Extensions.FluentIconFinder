@@ -2,7 +2,7 @@
 
 This is an extension for [DevToys](https://devtoys.app/) 2.0.
 
-Search for Fluent System Icons to obtain character codes and icon name.
+Search for [Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons) to obtain character codes and icon name.
 
 ![fluent-icon-finder](https://raw.githubusercontent.com/pierre3/DevToys.Extensions.FluentIconFinder/master/img/fluent-icon-finder.png)
 
