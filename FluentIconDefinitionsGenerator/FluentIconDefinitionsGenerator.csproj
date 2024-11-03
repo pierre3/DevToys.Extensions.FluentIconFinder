@@ -7,15 +7,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Update="FluentSystemIcons-Filled.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="FluentSystemIcons-Regular.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="echo $(ProjectDir)..\DevToys.Extensions.FluentIconFinder &gt; $(TargetDir)targetProjectDir.txt" />
   </Target>

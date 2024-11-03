@@ -129,7 +129,9 @@ public class FluentIconFinderGui : IGuiTool
                 Cell(
                     GridRows.Row4,
                     GridColumns.Column1,
-                    _dataGrid.Title(FluentIconFinder.IconListTitle).OnRowSelected(OnRowSelected))));
+                    _dataGrid
+                        .Title($"[Icon Version: {FluentIcons.Version}] " + FluentIconFinder.IconListTitle)
+                        .OnRowSelected(OnRowSelected))));
 
     private void OnIconTypeSelected(IUIDropDownListItem? item)
     {
@@ -146,7 +148,7 @@ public class FluentIconFinderGui : IGuiTool
         if (row?.Value is FluentIcon icon)
         {
             _selectedIconCell.WithChild(
-                Icon(FluentIcons.GetFontName(_iconType), icon.Code < 0xFFFF ? Convert.ToChar(icon.Code) : '\ueb87')
+                Icon(FluentIcons.GetFontName(_iconType), icon.Code < 0xFFFF ? Convert.ToChar(icon.Code) : BlankIcon())
                     .Size(icon.Size));
             _selectedIconLabel.Text($"{icon.Name} ({icon.Size})");
             _codeText.Text(icon.Code < 0xFFFF ? icon.Code.ToString("x4") : icon.Code.ToString("x8"));
@@ -154,6 +156,8 @@ public class FluentIconFinderGui : IGuiTool
             _androidText.Text(icon.AndroidName);
         }
     }
+
+    private char BlankIcon() => _iconType == FluentIcons.IconType.Regular ? '\ueb87' : '\ueb90';
 
     public void OnDataReceived(string dataTypeName, object? parsedData)
     {
@@ -197,7 +201,7 @@ public class FluentIconFinderGui : IGuiTool
             .Select(icon => Row(
                 value: icon,
                 Cell(
-                    Icon(FluentIcons.GetFontName(_iconType), icon.Code < 0xFFFF ? Convert.ToChar(icon.Code) : '\ueb87')
+                    Icon(FluentIcons.GetFontName(_iconType), icon.Code < 0xFFFF ? Convert.ToChar(icon.Code) : BlankIcon())
                         .Size(icon.Size)
                         .AlignHorizontally(UIHorizontalAlignment.Center)),
                 Cell(

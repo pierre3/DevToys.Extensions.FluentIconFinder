@@ -11,10 +11,14 @@ internal sealed class FluentIconFinderResourceAssemblyIdentifier : IResourceAsse
     public ValueTask<FontDefinition[]> GetFontDefinitionsAsync()
     {
         var assembly = Assembly.GetExecutingAssembly();
-        string resourceName = "DevToys.Extensions.FluentIconFinder.Assets.FluentSystemIcons-Filled.ttf";
+        var resourceNameRegular = "DevToys.Extensions.FluentIconFinder.Assets.FluentSystemIcons-Regular.ttf";
+        var streamRegular = assembly.GetManifestResourceStream(resourceNameRegular)!;
+        var resourceNameFill = "DevToys.Extensions.FluentIconFinder.Assets.FluentSystemIcons-Filled.ttf";
+        var streamFill = assembly.GetManifestResourceStream(resourceNameFill)!;
 
-        Stream stream = assembly.GetManifestResourceStream(resourceName)!;
-
-        return new([new FontDefinition(FluentIcons.FilledIconFontName, stream)]);
+        return new([
+            new FontDefinition(FluentIcons.RegularIconFontName, streamRegular),
+            new FontDefinition(FluentIcons.FilledIconFontName, streamFill)
+            ]);
     }
 }
