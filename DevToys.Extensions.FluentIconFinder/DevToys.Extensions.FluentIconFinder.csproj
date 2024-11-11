@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<IsPackable>true</IsPackable>
-	<Version>1.1.1</Version>
+	<Version>1.2.0</Version>
 	<Title>DevToys.Extensions.FluentIconFinder</Title>
 	  <Description>Search for Fluent System Icons to obtain character codes and icon name.</Description>
 	  <PackageProjectUrl>https://github.com/pierre3/DevToys.Extensions.FluentIconFinder</PackageProjectUrl>
@@ -18,8 +18,11 @@
 	  <IncludeSymbols>False</IncludeSymbols>
 	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
-	  <PackageReleaseNotes>[1.1.1]
-- Updated Fluent UI System Icons to version 1.1.264
+	  <PackageReleaseNotes>
+[1.2.0]
+This Version requires DevToys 2.0-preview6 (2.0.6.0) or later
+- Support for UTF-32 icon glyphs.
+- Updated Fluent UI System Icons to version 1.1.265
 	  </PackageReleaseNotes>
   </PropertyGroup>
 
@@ -38,7 +41,7 @@
 	<EmbeddedResource Include="Assets\FluentSystemIcons-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DevToys.Api" Version="2.0.5-preview" />
+    <PackageReference Include="DevToys.Api" Version="2.0.6-preview" />
   </ItemGroup>
 
   <ItemGroup>

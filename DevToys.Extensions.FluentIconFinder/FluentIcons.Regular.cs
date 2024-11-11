@@ -8326,6 +8326,27 @@ public static partial class FluentIcons
         new("Textbox Checkmark", "textboxCheckmark48Regular", "ic_fluent_textbox_checkmark_48_regular", 48, 984958),
         new("Document One Page Multiple Sparkle", "documentOnePageMultipleSparkle16Regular", "ic_fluent_document_one_page_multiple_sparkle_16_regular", 16, 984959),
         new("Document One Page Multiple Sparkle", "documentOnePageMultipleSparkle20Regular", "ic_fluent_document_one_page_multiple_sparkle_20_regular", 20, 984960),
-        new("Document One Page Multiple Sparkle", "documentOnePageMultipleSparkle24Regular", "ic_fluent_document_one_page_multiple_sparkle_24_regular", 24, 984961)        
+        new("Document One Page Multiple Sparkle", "documentOnePageMultipleSparkle24Regular", "ic_fluent_document_one_page_multiple_sparkle_24_regular", 24, 984961),
+        new("Animal Paw Print", "animalPawPrint16Regular", "ic_fluent_animal_paw_print_16_regular", 16, 984962),
+        new("Animal Paw Print", "animalPawPrint20Regular", "ic_fluent_animal_paw_print_20_regular", 20, 984963),
+        new("Animal Paw Print", "animalPawPrint24Regular", "ic_fluent_animal_paw_print_24_regular", 24, 984964),
+        new("Animal Paw Print", "animalPawPrint28Regular", "ic_fluent_animal_paw_print_28_regular", 28, 984965),
+        new("Animal Paw Print", "animalPawPrint32Regular", "ic_fluent_animal_paw_print_32_regular", 32, 984966),
+        new("Animal Paw Print", "animalPawPrint48Regular", "ic_fluent_animal_paw_print_48_regular", 48, 984967),
+        new("Arrow Clockwise Dashes", "arrowClockwiseDashes28Regular", "ic_fluent_arrow_clockwise_dashes_28_regular", 28, 984968),
+        new("Arrow Clockwise Dashes", "arrowClockwiseDashes48Regular", "ic_fluent_arrow_clockwise_dashes_48_regular", 48, 984969),
+        new("Arrow Clockwise Dashes Settings", "arrowClockwiseDashesSettings16Regular", "ic_fluent_arrow_clockwise_dashes_settings_16_regular", 16, 984970),
+        new("Arrow Clockwise Dashes Settings", "arrowClockwiseDashesSettings20Regular", "ic_fluent_arrow_clockwise_dashes_settings_20_regular", 20, 984971),
+        new("Arrow Clockwise Dashes Settings", "arrowClockwiseDashesSettings24Regular", "ic_fluent_arrow_clockwise_dashes_settings_24_regular", 24, 984972),
+        new("Arrow Clockwise Dashes Settings", "arrowClockwiseDashesSettings28Regular", "ic_fluent_arrow_clockwise_dashes_settings_28_regular", 28, 984973),
+        new("Arrow Clockwise Dashes Settings", "arrowClockwiseDashesSettings32Regular", "ic_fluent_arrow_clockwise_dashes_settings_32_regular", 32, 984974),
+        new("Arrow Clockwise Dashes Settings", "arrowClockwiseDashesSettings48Regular", "ic_fluent_arrow_clockwise_dashes_settings_48_regular", 48, 984975),
+        new("Chat Off", "chatOff16Regular", "ic_fluent_chat_off_16_regular", 16, 984976),
+        new("Connected", "connected24Regular", "ic_fluent_connected_24_regular", 24, 984977),
+        new("Connected", "connected32Regular", "ic_fluent_connected_32_regular", 32, 984978),
+        new("Square Text Arrow Repeat All", "squareTextArrowRepeatAll16Regular", "ic_fluent_square_text_arrow_repeat_all_16_regular", 16, 984979),
+        new("Square Text Arrow Repeat All", "squareTextArrowRepeatAll20Regular", "ic_fluent_square_text_arrow_repeat_all_20_regular", 20, 984980),
+        new("Square Text Arrow Repeat All", "squareTextArrowRepeatAll24Regular", "ic_fluent_square_text_arrow_repeat_all_24_regular", 24, 984981),
+        new("Translate", "translate32Regular", "ic_fluent_translate_32_regular", 32, 984982)        
     ];
 }

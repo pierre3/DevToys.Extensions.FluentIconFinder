@@ -20,4 +20,19 @@ Search for [Fluent UI System Icons](https://github.com/microsoft/fluentui-system
 
 ## Known Issues
 - When selecting from the list with a single click, the content of the previously selected row, not the highlighted row, is displayed in the text box.
-- Icons with surrogate pairs (4-byte glyph codes) do not display images. However, the glyph code and icon name can still be retrieved. This is because DevToys can only specify icons using the char type (2 bytes).
+
+## Release Notes
+[1.2.0]
+
+- Support for UTF-32 icon glyphs.
+- Updated Fluent UI System Icons to version 1.1.265
+- Compatible DevToys version: DevToys 2.0-preview6 (2.0.6.0) or later
+ 
+[1.1.1]
+
+- Updated Fluent UI System Icons to version 1.1.264
+
+[1.1.0]
+
+- Added Filled type icons. You can now switch between Regular and Filled types.
+- Fixed incorrect glyph codes for some icons.

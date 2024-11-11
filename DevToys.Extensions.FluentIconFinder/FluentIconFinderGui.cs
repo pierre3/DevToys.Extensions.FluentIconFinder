@@ -148,7 +148,7 @@ public class FluentIconFinderGui : IGuiTool
         if (row?.Value is FluentIcon icon)
         {
             _selectedIconCell.WithChild(
-                Icon(FluentIcons.GetFontName(_iconType), icon.Code < 0xFFFF ? Convert.ToChar(icon.Code) : BlankIcon())
+                Icon(FluentIcons.GetFontName(_iconType), icon.Code)
                     .Size(icon.Size));
             _selectedIconLabel.Text($"{icon.Name} ({icon.Size})");
             _codeText.Text(icon.Code < 0xFFFF ? icon.Code.ToString("x4") : icon.Code.ToString("x8"));
@@ -201,7 +201,7 @@ public class FluentIconFinderGui : IGuiTool
             .Select(icon => Row(
                 value: icon,
                 Cell(
-                    Icon(FluentIcons.GetFontName(_iconType), icon.Code < 0xFFFF ? Convert.ToChar(icon.Code) : BlankIcon())
+                    Icon(FluentIcons.GetFontName(_iconType), icon.Code)
                         .Size(icon.Size)
                         .AlignHorizontally(UIHorizontalAlignment.Center)),
                 Cell(
