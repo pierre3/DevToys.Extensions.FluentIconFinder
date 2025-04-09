@@ -1,4 +1,5 @@
 ﻿# DevToys.Extensions.FluentIconFinder
+[![NuGet version](https://badge.fury.io/nu/DevToys.Extensions.FluentIconFinder.svg)](https://badge.fury.io/nu/DevToys.Extensions.FluentIconFinder)
 
 This is an extension for [DevToys](https://devtoys.app/) 2.0.
 
