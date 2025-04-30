@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<IsPackable>true</IsPackable>
-	<Version>1.5.0</Version>
+	<Version>1.6.0</Version>
 	<Title>DevToys.Extensions.FluentIconFinder</Title>
 	  <Description>Search for Fluent System Icons to obtain character codes and icon name.</Description>
 	  <PackageProjectUrl>https://github.com/pierre3/DevToys.Extensions.FluentIconFinder</PackageProjectUrl>
@@ -19,8 +19,8 @@
 	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
 	  <PackageReleaseNotes>
-[1.5.0]
-- Updated Fluent UI System Icons to version 1.1.297
+[1.6.0]
+- Updated Fluent UI System Icons to version 1.1.298
 	  </PackageReleaseNotes>
   </PropertyGroup>
 
