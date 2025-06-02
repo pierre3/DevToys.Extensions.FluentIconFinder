@@ -24,6 +24,9 @@ Search for [Fluent UI System Icons](https://github.com/microsoft/fluentui-system
 
 ## Release Notes
 [1.7.0]
+- Updated Fluent UI System Icons to version 1.1.302
+
+[1.7.0]
 - Updated Fluent UI System Icons to version 1.1.300
 
 [1.6.0]
