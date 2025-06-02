@@ -23,7 +23,7 @@ Search for [Fluent UI System Icons](https://github.com/microsoft/fluentui-system
 - When selecting from the list with a single click, the content of the previously selected row, not the highlighted row, is displayed in the text box.
 
 ## Release Notes
-[1.7.0]
+[1.8.0]
 - Updated Fluent UI System Icons to version 1.1.302
 
 [1.7.0]
