@@ -1,15 +1,24 @@
 ﻿using System.IO.Compression;
 using System.Text.Json;
 
-var targetDir = File.ReadAllText("targetProjectDir.txt").TrimEnd([' ', '\r', '\n']);
+// The extension project directory. In CI it is passed as the first argument
+// (cross-platform, cwd-independent); locally it falls back to targetProjectDir.txt,
+// which the .csproj PostBuild target writes into the generator's output directory.
+var targetDir = args.Length > 0
+    ? args[0].TrimEnd([' ', '\r', '\n'])
+    : File.ReadAllText("targetProjectDir.txt").TrimEnd([' ', '\r', '\n']);
+
+// Intermediate JSON is extracted into a temp directory so the tool never leaves
+// stray files in the current working directory (important when run from a repo root in CI).
+var workDir = Directory.CreateTempSubdirectory("FluentIconGen").FullName;
 
 var (version, zip) = await DownloadFluentSystemIconsZip();
 try
 {
     var root = zip.Entries.First().FullName;
-    ExtractToFile(zip, root, "FluentSystemIcons-Filled.json", ".");
+    ExtractToFile(zip, root, "FluentSystemIcons-Filled.json", workDir);
     ExtractToFile(zip, root, "FluentSystemIcons-Filled.ttf", Path.Combine(targetDir, "Assets"));
-    ExtractToFile(zip, root, "FluentSystemIcons-Regular.json", ".");
+    ExtractToFile(zip, root, "FluentSystemIcons-Regular.json", workDir);
     ExtractToFile(zip, root, "FluentSystemIcons-Regular.ttf", Path.Combine(targetDir, "Assets"));
 }
 finally
@@ -19,17 +28,19 @@ finally
 
 OutputVersionCs(targetDir, version);
 OutputFluentIconsCs(
-    "FluentSystemIcons-Regular.json",
+    Path.Combine(workDir, "FluentSystemIcons-Regular.json"),
     targetDir,
     "FluentIcons.Regular.cs",
     "RegularIconFontName = \"FluentSystemIcons-Regular\"",
     "RegularIcons");
 OutputFluentIconsCs(
-    "FluentSystemIcons-Filled.json",
+    Path.Combine(workDir, "FluentSystemIcons-Filled.json"),
     targetDir,
     "FluentIcons.Filled.cs",
     "FilledIconFontName = \"FluentSystemIcons-Filled\"",
 "FilledIcons");
+
+Directory.Delete(workDir, recursive: true);
 
 static async Task<(string version, ZipArchive zip)> DownloadFluentSystemIconsZip()
 {
@@ -41,6 +52,13 @@ static async Task<(string version, ZipArchive zip)> DownloadFluentSystemIconsZip
     http.DefaultRequestHeaders.Add("Accept", "application/vnd.github+json");
     http.DefaultRequestHeaders.Add("X-GitHub-Api-Version", "2022-11-28");
     http.DefaultRequestHeaders.Add("User-Agent", "DevToys.Extensions.FluentIconFinder");
+    // Authenticate when a token is available (e.g. in CI) to avoid GitHub's
+    // unauthenticated rate limit of 60 requests/hour per IP.
+    var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
+    if (!string.IsNullOrEmpty(token))
+    {
+        http.DefaultRequestHeaders.Authorization = new("Bearer", token);
+    }
     var tagsJson = await http.GetStringAsync(url);
     var tags = DeserializeAnonimousObject(tagsJson, new[] { new { name = "", zipball_url = "" } });
     var iconVersion = tags[0].name;
@@ -74,8 +92,11 @@ static void OutputVersionCs(string targetDir, string version)
 
 static bool OutputFluentIconsCs(string jsonName, string targetDir, string targetCsName, string fontNameDefs, string propertyName)
 {
-    var stream = File.OpenRead(jsonName);
-    var data = JsonSerializer.Deserialize<Dictionary<string, int>>(stream);
+    Dictionary<string, int>? data;
+    using (var stream = File.OpenRead(jsonName))
+    {
+        data = JsonSerializer.Deserialize<Dictionary<string, int>>(stream);
+    }
     if (data is null)
     {
         Console.WriteLine($"Error: {jsonName}");

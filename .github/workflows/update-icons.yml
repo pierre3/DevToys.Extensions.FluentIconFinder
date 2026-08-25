@@ -1,0 +1,92 @@
+name: Update Fluent Icons
+
+# Weekly check for a new microsoft/fluentui-system-icons release.
+# When one is found, regenerate the icon definitions, bump the package version,
+# and open a PR. Merging that PR triggers publish.yml (NuGet push + tag/release).
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'   # Every Monday 00:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Regenerate icon definitions
+        env:
+          # Authenticated GitHub API calls avoid the 60 req/hour unauthenticated limit.
+          GITHUB_TOKEN: ${{ github.token }}
+        run: dotnet run --project FluentIconDefinitionsGenerator -c Release -- "$PWD/DevToys.Extensions.FluentIconFinder"
+
+      - name: Detect changes
+        id: detect
+        run: |
+          # Key the decision on the icon *definition* files (glyph name -> code maps) only.
+          # A new upstream tag always rewrites FluentIcons.Version.cs with the new tag string,
+          # but if the icon set itself is unchanged we must NOT open a PR or publish a release.
+          # The .ttf fonts are excluded too: they can differ byte-wise between tags (font
+          # metadata) without any change to what this tool exposes (codes + names).
+          DEFS="DevToys.Extensions.FluentIconFinder/FluentIcons.Regular.cs DevToys.Extensions.FluentIconFinder/FluentIcons.Filled.cs"
+          if git diff --quiet -- $DEFS; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Icon definitions unchanged (upstream tag may have moved without icon changes). Skipping."
+            git checkout -- .   # discard the Version.cs/.ttf-only regeneration; nothing to commit
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Icon definitions changed."
+          fi
+
+      - name: Bump version and release notes
+        if: steps.detect.outputs.changed == 'true'
+        id: bump
+        run: |
+          set -euo pipefail
+          CSPROJ=DevToys.Extensions.FluentIconFinder/DevToys.Extensions.FluentIconFinder.csproj
+          FLUENT_VER=$(grep -oP 'Version = "\K[^"]+' DevToys.Extensions.FluentIconFinder/FluentIcons.Version.cs)
+          CUR_PKG=$(grep -oP '<Version>\K[^<]+' "$CSPROJ" | head -1)
+          IFS=. read -r MA MI PA <<< "$CUR_PKG"
+          NEW_PKG="$MA.$((MI + 1)).0"
+          echo "Fluent $FLUENT_VER : package $CUR_PKG -> $NEW_PKG"
+
+          # <Version> element (the DevToys.Api PackageReference uses a Version="" attribute, so it is untouched).
+          sed -i "s#<Version>${CUR_PKG}</Version>#<Version>${NEW_PKG}</Version>#" "$CSPROJ"
+
+          # Replace the whole <PackageReleaseNotes> block.
+          perl -0777 -i -pe "s{<PackageReleaseNotes>.*?</PackageReleaseNotes>}{<PackageReleaseNotes>\n[${NEW_PKG}]\n- Updated Fluent UI System Icons to version ${FLUENT_VER}\n  </PackageReleaseNotes>}s" "$CSPROJ"
+
+          # Prepend a new entry under the README "## Release Notes" heading.
+          # ${2} reuses the file's own newline style (works for LF or CRLF); the braces are
+          # required so perl does not read "${2}[..." as an array subscript on capture group 2.
+          perl -0777 -i -pe "s{(## Release Notes)(\r?\n)}{\${1}\${2}[${NEW_PKG}]\${2}- Updated Fluent UI System Icons to version ${FLUENT_VER}\${2}\${2}}" README.md
+
+          echo "fluent_ver=$FLUENT_VER" >> "$GITHUB_OUTPUT"
+          echo "new_pkg=$NEW_PKG" >> "$GITHUB_OUTPUT"
+
+      - name: Create pull request
+        if: steps.detect.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: auto/update-icons-${{ steps.bump.outputs.fluent_ver }}
+          title: Updated Fluent UI System Icons to version ${{ steps.bump.outputs.fluent_ver }}
+          commit-message: Updated Fluent UI System Icons to version ${{ steps.bump.outputs.fluent_ver }}
+          body: |
+            Automated update from the weekly icon-sync workflow.
+
+            - Fluent UI System Icons: `${{ steps.bump.outputs.fluent_ver }}`
+            - Package version: `${{ steps.bump.outputs.new_pkg }}`
+
+            Merging this PR into `master` triggers **Publish to NuGet** (`dotnet nuget push` + git tag + GitHub Release).
+          labels: |
+            automated
+            icons

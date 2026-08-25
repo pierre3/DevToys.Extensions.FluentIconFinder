@@ -1,0 +1,64 @@
+name: Publish to NuGet
+
+# Triggered when the extension changes land on master (e.g. an update-icons PR is merged).
+# Publishes the package only if its <Version> has not been released yet, using the
+# presence of a matching git tag as the idempotency gate.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'DevToys.Extensions.FluentIconFinder/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so the version-tag gate can see existing tags
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Read package version
+        id: ver
+        run: |
+          CSPROJ=DevToys.Extensions.FluentIconFinder/DevToys.Extensions.FluentIconFinder.csproj
+          PKG_VER=$(grep -oP '<Version>\K[^<]+' "$CSPROJ" | head -1)
+          echo "pkg_ver=$PKG_VER" >> "$GITHUB_OUTPUT"
+          echo "Package version: $PKG_VER"
+
+      - name: Gate on existing tag
+        id: gate
+        run: |
+          # Tags follow the repo's existing convention: bare version, no "v" prefix.
+          if git rev-parse -q --verify "refs/tags/${{ steps.ver.outputs.pkg_ver }}" >/dev/null; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "Tag ${{ steps.ver.outputs.pkg_ver }} already exists; nothing to publish."
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Pack
+        if: steps.gate.outputs.publish == 'true'
+        run: dotnet pack DevToys.Extensions.FluentIconFinder/DevToys.Extensions.FluentIconFinder.csproj -c Release -o artifacts
+
+      - name: Push to NuGet
+        if: steps.gate.outputs.publish == 'true'
+        run: dotnet nuget push "artifacts/*.nupkg" -k "${{ secrets.NUGET_API_KEY }}" -s https://api.nuget.org/v3/index.json --skip-duplicate
+
+      - name: Tag and create GitHub Release
+        if: steps.gate.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VER="${{ steps.ver.outputs.pkg_ver }}"
+          git tag "$VER"
+          git push origin "$VER"
+          gh release create "$VER" --title "$VER" --notes "DevToys.Extensions.FluentIconFinder $VER"
