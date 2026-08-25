@@ -12,11 +12,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write     # push the version tag and create the GitHub Release
+  id-token: write     # request the GitHub OIDC token for NuGet trusted publishing
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    # Must match the "Environment" set on the nuget.org trusted-publishing policy.
+    environment: NUGET_API_KEY
     steps:
       - uses: actions/checkout@v4
         with:
@@ -53,9 +56,18 @@ jobs:
         if: steps.gate.outputs.publish == 'true'
         run: dotnet build DevToys.Extensions.FluentIconFinder/DevToys.Extensions.FluentIconFinder.csproj -c Release
 
+      # Trusted publishing: exchange the GitHub OIDC token for a short-lived NuGet API key
+      # (valid ~1h) instead of a static secret. `user` is the nuget.org account username.
+      - name: NuGet login (OIDC)
+        if: steps.gate.outputs.publish == 'true'
+        id: nuget_login
+        uses: NuGet/login@v1
+        with:
+          user: pierre3
+
       - name: Push to NuGet
         if: steps.gate.outputs.publish == 'true'
-        run: dotnet nuget push "DevToys.Extensions.FluentIconFinder/bin/Release/DevToys.Extensions.FluentIconFinder.${{ steps.ver.outputs.pkg_ver }}.nupkg" -k "${{ secrets.NUGET_API_KEY }}" -s https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push "DevToys.Extensions.FluentIconFinder/bin/Release/DevToys.Extensions.FluentIconFinder.${{ steps.ver.outputs.pkg_ver }}.nupkg" --api-key "${{ steps.nuget_login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
 
       - name: Tag and create GitHub Release
         if: steps.gate.outputs.publish == 'true'
