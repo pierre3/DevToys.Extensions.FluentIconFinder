@@ -1,5 +1,6 @@
 ﻿using System.IO.Compression;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 // The extension project directory. In CI it is passed as the first argument
 // (cross-platform, cwd-independent); locally it falls back to targetProjectDir.txt,
@@ -46,7 +47,7 @@ static async Task<(string version, ZipArchive zip)> DownloadFluentSystemIconsZip
 {
     static T? DeserializeAnonimousObject<T>(string s, T obj) => JsonSerializer.Deserialize<T>(s);
 
-    var url = "https://api.github.com/repos/microsoft/fluentui-system-icons/tags?per_page=1";
+    var url = "https://api.github.com/repos/microsoft/fluentui-system-icons/tags?per_page=100";
     var http = new HttpClient();
     http.Timeout = TimeSpan.FromMinutes(10);
     http.DefaultRequestHeaders.Add("Accept", "application/vnd.github+json");
@@ -60,9 +61,16 @@ static async Task<(string version, ZipArchive zip)> DownloadFluentSystemIconsZip
         http.DefaultRequestHeaders.Authorization = new("Bearer", token);
     }
     var tagsJson = await http.GetStringAsync(url);
-    var tags = DeserializeAnonimousObject(tagsJson, new[] { new { name = "", zipball_url = "" } });
-    var iconVersion = tags[0].name;
-    var zipUrl = tags[0].zipball_url;
+    var tags = DeserializeAnonimousObject(tagsJson, new[] { new { name = "", zipball_url = "" } })
+        ?? throw new InvalidOperationException("Failed to read tags from the GitHub API.");
+    // This is a monorepo whose tags mix package-prefixed names (e.g. "eslint-plugin-react-icons@0.0.1")
+    // with the icon-font releases ("1.1.338"). Keep only pure version-number tags and take the highest.
+    var latest = tags
+        .Where(t => Regex.IsMatch(t.name, @"^\d+\.\d+\.\d+$"))
+        .OrderByDescending(t => Version.Parse(t.name))
+        .First();
+    var iconVersion = latest.name;
+    var zipUrl = latest.zipball_url;
     var request = new HttpRequestMessage(HttpMethod.Get, zipUrl);
     request.Headers.Accept.Clear();
     var response = await http.SendAsync(request);

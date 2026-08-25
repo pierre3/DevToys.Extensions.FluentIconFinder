@@ -33,7 +33,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           CUR=$(grep -oP 'Version = "\K[^"]+' DevToys.Extensions.FluentIconFinder/FluentIcons.Version.cs)
-          LATEST=$(gh api "repos/microsoft/fluentui-system-icons/tags?per_page=1" --jq '.[0].name')
+          # The repo mixes package-prefixed tags (e.g. eslint-plugin-react-icons@0.0.1) with the
+          # icon-font releases (1.1.338). Keep only pure version-number tags and take the highest.
+          LATEST=$(gh api "repos/microsoft/fluentui-system-icons/tags?per_page=100" \
+            --jq '[.[].name | select(test("^[0-9]+\\.[0-9]+\\.[0-9]+$"))] | sort_by(split(".") | map(tonumber)) | last')
           echo "Shipped tag: $CUR / upstream latest tag: $LATEST"
           if [ "$CUR" = "$LATEST" ]; then
             echo "new_tag=false" >> "$GITHUB_OUTPUT"
