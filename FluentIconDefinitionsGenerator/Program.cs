@@ -37,7 +37,7 @@ static async Task<(string version, ZipArchive zip)> DownloadFluentSystemIconsZip
 
     var url = "https://api.github.com/repos/microsoft/fluentui-system-icons/tags?per_page=1";
     var http = new HttpClient();
-    http.Timeout = TimeSpan.FromMinutes(5);
+    http.Timeout = TimeSpan.FromMinutes(10);
     http.DefaultRequestHeaders.Add("Accept", "application/vnd.github+json");
     http.DefaultRequestHeaders.Add("X-GitHub-Api-Version", "2022-11-28");
     http.DefaultRequestHeaders.Add("User-Agent", "DevToys.Extensions.FluentIconFinder");
