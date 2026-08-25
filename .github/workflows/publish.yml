@@ -45,13 +45,17 @@ jobs:
             echo "publish=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Pack
+      # Use `dotnet build`, not `dotnet pack`: the DevToys.Api pack targets require
+      # runtimeconfig.json, which is produced by the build (GenerateRuntimeConfigurationFiles).
+      # `dotnet pack` alone on a fresh checkout fails with NU5026 because that file is absent.
+      # GeneratePackageOnBuild=true means the build emits the .nupkg into bin/Release.
+      - name: Build and pack
         if: steps.gate.outputs.publish == 'true'
-        run: dotnet pack DevToys.Extensions.FluentIconFinder/DevToys.Extensions.FluentIconFinder.csproj -c Release -o artifacts
+        run: dotnet build DevToys.Extensions.FluentIconFinder/DevToys.Extensions.FluentIconFinder.csproj -c Release
 
       - name: Push to NuGet
         if: steps.gate.outputs.publish == 'true'
-        run: dotnet nuget push "artifacts/*.nupkg" -k "${{ secrets.NUGET_API_KEY }}" -s https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push "DevToys.Extensions.FluentIconFinder/bin/Release/DevToys.Extensions.FluentIconFinder.${{ steps.ver.outputs.pkg_ver }}.nupkg" -k "${{ secrets.NUGET_API_KEY }}" -s https://api.nuget.org/v3/index.json --skip-duplicate
 
       - name: Tag and create GitHub Release
         if: steps.gate.outputs.publish == 'true'
