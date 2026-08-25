@@ -59,6 +59,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           VER="${{ steps.ver.outputs.pkg_ver }}"
+          # Match the existing changelog notation, which records the upstream Fluent tag number.
+          FLUENT_VER=$(grep -oP 'Version = "\K[^"]+' DevToys.Extensions.FluentIconFinder/FluentIcons.Version.cs)
           git tag "$VER"
           git push origin "$VER"
-          gh release create "$VER" --title "$VER" --notes "DevToys.Extensions.FluentIconFinder $VER"
+          gh release create "$VER" --title "$VER" --notes "Updated Fluent UI System Icons to version $FLUENT_VER"

@@ -23,13 +23,34 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      # The real trigger is "a new tag was published in the upstream Fluent icons repo".
+      # GitHub Actions cannot receive another repo's tag events, so the weekly cron polls:
+      # compare the upstream latest tag against the tag we currently ship
+      # (stored in FluentIcons.Version.cs). Only continue when a newer tag exists.
+      - name: Check for new upstream tag
+        id: upstream
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          CUR=$(grep -oP 'Version = "\K[^"]+' DevToys.Extensions.FluentIconFinder/FluentIcons.Version.cs)
+          LATEST=$(gh api "repos/microsoft/fluentui-system-icons/tags?per_page=1" --jq '.[0].name')
+          echo "Shipped tag: $CUR / upstream latest tag: $LATEST"
+          if [ "$CUR" = "$LATEST" ]; then
+            echo "new_tag=false" >> "$GITHUB_OUTPUT"
+            echo "No new upstream tag; nothing to do."
+          else
+            echo "new_tag=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Regenerate icon definitions
+        if: steps.upstream.outputs.new_tag == 'true'
         env:
           # Authenticated GitHub API calls avoid the 60 req/hour unauthenticated limit.
           GITHUB_TOKEN: ${{ github.token }}
         run: dotnet run --project FluentIconDefinitionsGenerator -c Release -- "$PWD/DevToys.Extensions.FluentIconFinder"
 
       - name: Detect changes
+        if: steps.upstream.outputs.new_tag == 'true'
         id: detect
         run: |
           # Key the decision on the icon *definition* files (glyph name -> code maps) only.
