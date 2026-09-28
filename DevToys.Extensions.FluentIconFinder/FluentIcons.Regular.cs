@@ -9758,6 +9758,19 @@ public static partial class FluentIcons
         new("Text Number List Ltr Rotate 90", "textNumberListLtrRotate9028Regular", "ic_fluent_text_number_list_ltr_rotate_90_28_regular", 28, 986390),
         new("Text Number List Rtl", "textNumberListRtl28Regular", "ic_fluent_text_number_list_rtl_28_regular", 28, 986391),
         new("Text Number List Rtl Rotate 270", "textNumberListRtlRotate27028Regular", "ic_fluent_text_number_list_rtl_rotate_270_28_regular", 28, 986392),
-        new("Text Number List Rtl Rotate 90", "textNumberListRtlRotate9028Regular", "ic_fluent_text_number_list_rtl_rotate_90_28_regular", 28, 986393)        
+        new("Text Number List Rtl Rotate 90", "textNumberListRtlRotate9028Regular", "ic_fluent_text_number_list_rtl_rotate_90_28_regular", 28, 986393),
+        new("Autopilot", "autopilot24Regular", "ic_fluent_autopilot_24_regular", 24, 986394),
+        new("Autopilot", "autopilot28Regular", "ic_fluent_autopilot_28_regular", 28, 986395),
+        new("Autopilot", "autopilot32Regular", "ic_fluent_autopilot_32_regular", 32, 986396),
+        new("Circle Image Off", "circleImageOff20Regular", "ic_fluent_circle_image_off_20_regular", 20, 986397),
+        new("Keyboard Mouse", "keyboardMouse20Regular", "ic_fluent_keyboard_mouse_20_regular", 20, 986398),
+        new("Keyboard Mouse Off", "keyboardMouseOff20Regular", "ic_fluent_keyboard_mouse_off_20_regular", 20, 986399),
+        new("Pivot", "pivot16Regular", "ic_fluent_pivot_16_regular", 16, 986400),
+        new("Rename A", "renameA16Regular", "ic_fluent_rename_a_16_regular", 16, 986401),
+        new("Rename A", "renameA24Regular", "ic_fluent_rename_a_24_regular", 24, 986402),
+        new("Rename A", "renameA28Regular", "ic_fluent_rename_a_28_regular", 28, 986403),
+        new("Text Collapse", "textCollapse16Regular", "ic_fluent_text_collapse_16_regular", 16, 986404),
+        new("Text Collapse", "textCollapse28Regular", "ic_fluent_text_collapse_28_regular", 28, 986405),
+        new("Text Collapse", "textCollapse32Regular", "ic_fluent_text_collapse_32_regular", 32, 986406)        
     ];
 }
