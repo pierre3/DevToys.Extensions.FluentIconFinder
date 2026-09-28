@@ -9883,6 +9883,19 @@ public static partial class FluentIcons
         new("Text Number List Ltr Rotate 90", "textNumberListLtrRotate9028Filled", "ic_fluent_text_number_list_ltr_rotate_90_28_filled", 28, 986515),
         new("Text Number List Rtl", "textNumberListRtl28Filled", "ic_fluent_text_number_list_rtl_28_filled", 28, 986516),
         new("Text Number List Rtl Rotate 270", "textNumberListRtlRotate27028Filled", "ic_fluent_text_number_list_rtl_rotate_270_28_filled", 28, 986517),
-        new("Text Number List Rtl Rotate 90", "textNumberListRtlRotate9028Filled", "ic_fluent_text_number_list_rtl_rotate_90_28_filled", 28, 986518)        
+        new("Text Number List Rtl Rotate 90", "textNumberListRtlRotate9028Filled", "ic_fluent_text_number_list_rtl_rotate_90_28_filled", 28, 986518),
+        new("Autopilot", "autopilot24Filled", "ic_fluent_autopilot_24_filled", 24, 986519),
+        new("Autopilot", "autopilot28Filled", "ic_fluent_autopilot_28_filled", 28, 986520),
+        new("Autopilot", "autopilot32Filled", "ic_fluent_autopilot_32_filled", 32, 986521),
+        new("Circle Image Off", "circleImageOff20Filled", "ic_fluent_circle_image_off_20_filled", 20, 986522),
+        new("Keyboard Mouse", "keyboardMouse20Filled", "ic_fluent_keyboard_mouse_20_filled", 20, 986523),
+        new("Keyboard Mouse Off", "keyboardMouseOff20Filled", "ic_fluent_keyboard_mouse_off_20_filled", 20, 986524),
+        new("Pivot", "pivot16Filled", "ic_fluent_pivot_16_filled", 16, 986525),
+        new("Rename A", "renameA16Filled", "ic_fluent_rename_a_16_filled", 16, 986526),
+        new("Rename A", "renameA24Filled", "ic_fluent_rename_a_24_filled", 24, 986527),
+        new("Rename A", "renameA28Filled", "ic_fluent_rename_a_28_filled", 28, 986528),
+        new("Text Collapse", "textCollapse16Filled", "ic_fluent_text_collapse_16_filled", 16, 986529),
+        new("Text Collapse", "textCollapse28Filled", "ic_fluent_text_collapse_28_filled", 28, 986530),
+        new("Text Collapse", "textCollapse32Filled", "ic_fluent_text_collapse_32_filled", 32, 986531)        
     ];
 }
