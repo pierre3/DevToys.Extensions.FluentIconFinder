@@ -9896,6 +9896,18 @@ public static partial class FluentIcons
         new("Rename A", "renameA28Filled", "ic_fluent_rename_a_28_filled", 28, 986528),
         new("Text Collapse", "textCollapse16Filled", "ic_fluent_text_collapse_16_filled", 16, 986529),
         new("Text Collapse", "textCollapse28Filled", "ic_fluent_text_collapse_28_filled", 28, 986530),
-        new("Text Collapse", "textCollapse32Filled", "ic_fluent_text_collapse_32_filled", 32, 986531)        
+        new("Text Collapse", "textCollapse32Filled", "ic_fluent_text_collapse_32_filled", 32, 986531),
+        new("Circle Multiple Concentric Dashes", "circleMultipleConcentricDashes16Filled", "ic_fluent_circle_multiple_concentric_dashes_16_filled", 16, 986532),
+        new("Circle Multiple Concentric Dashes", "circleMultipleConcentricDashes20Filled", "ic_fluent_circle_multiple_concentric_dashes_20_filled", 20, 986533),
+        new("Circle Multiple Concentric Dashes", "circleMultipleConcentricDashes24Filled", "ic_fluent_circle_multiple_concentric_dashes_24_filled", 24, 986534),
+        new("Circle Multiple Concentric Dashes", "circleMultipleConcentricDashes28Filled", "ic_fluent_circle_multiple_concentric_dashes_28_filled", 28, 986535),
+        new("Circle Multiple Concentric Dashes", "circleMultipleConcentricDashes32Filled", "ic_fluent_circle_multiple_concentric_dashes_32_filled", 32, 986536),
+        new("Circle Multiple Concentric Dashes", "circleMultipleConcentricDashes48Filled", "ic_fluent_circle_multiple_concentric_dashes_48_filled", 48, 986537),
+        new("Layout Infographic Two Sparkle", "layoutInfographicTwoSparkle16Filled", "ic_fluent_layout_infographic_two_sparkle_16_filled", 16, 986538),
+        new("Layout Infographic Two Sparkle", "layoutInfographicTwoSparkle20Filled", "ic_fluent_layout_infographic_two_sparkle_20_filled", 20, 986539),
+        new("Plug Puzzle", "plugPuzzle16Filled", "ic_fluent_plug_puzzle_16_filled", 16, 986540),
+        new("Plug Puzzle", "plugPuzzle20Filled", "ic_fluent_plug_puzzle_20_filled", 20, 986541),
+        new("Plug Puzzle", "plugPuzzle24Filled", "ic_fluent_plug_puzzle_24_filled", 24, 986542),
+        new("Plug Puzzle", "plugPuzzle32Filled", "ic_fluent_plug_puzzle_32_filled", 32, 986543)        
     ];
 }
