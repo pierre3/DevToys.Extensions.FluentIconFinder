@@ -2,5 +2,5 @@ namespace DevToys.Extensions.FluentIconFinder;
 
 public static partial class FluentIcons
 {
-    public static readonly string Version = "1.1.343";
+    public static readonly string Version = "1.1.344";
 }
